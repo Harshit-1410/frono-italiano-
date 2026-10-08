@@ -1,0 +1,6 @@
+import type { MenuItem } from '@/data/menu';
+import { rupees } from '@/data/menu';
+import { QuantityControl } from './cart';
+export function DishCard({ item, featured = false }: { item: MenuItem; featured?: boolean }) {
+  return <article className="dish-card"><div className="relative"><img className="dish-image" src={item.image} alt={item.name} loading="lazy" />{featured && item.badge && <span className="absolute left-3 top-3 rounded-md bg-background px-2.5 py-1.5 text-[9px] font-bold text-primary">{item.badge}</span>}</div><div className="p-4"><div className="mb-2 flex items-center gap-2"><span className={`veg-dot ${item.veg ? '' : 'nonveg'}`} aria-label={item.veg ? 'Vegetarian' : 'Non-vegetarian'} /><h3 className="text-sm text-primary">{item.name}</h3></div><p className="min-h-10 text-[11px] leading-relaxed text-muted-foreground">{item.description}</p><div className="mt-4 flex items-center justify-between gap-1"><span className="text-lg font-extrabold text-primary">{rupees(item.price)}</span><QuantityControl item={item} label={featured ? 'Add' : 'Add'} /></div></div></article>;
+}
